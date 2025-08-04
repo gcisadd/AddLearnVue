@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <div class="mes">{{msg}}</div>
+    <div class="add">{{add}}</div>
+  </div>
+
+<script src="../vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      msg: 'Hello World!!',
+      add: 'gc',
+    }
+  })
+  console.log(app.add)
+  app.add = 'GongChi'
+</script>
+</body>
+</html>
