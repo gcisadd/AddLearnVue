@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .show {
+      width: 100px;
+      height: 100px;
+      color: red;
+    }
+    .if {
+      width: 100px;
+      height: 30px;
+      color: blue;
+    }
+    .count {
+      width: 30px;
+      height: 30px;
+      font-size: 24px;
+      color: green;
+    }
+    .saler {
+      margin-top: 8px;
+      padding: 4px;
+      width: 40%;
+      border: 1px solid;
+      border-radius: 10px;
+      text-align: center;
+    }
+    img {
+      display: block;
+      margin-top: 8px;
+      width: 500px;
+      border-radius: 10px;
+    }
+    .tiger {
+      width: 100px;
+      height: 30px;
+      line-height: 30px;
+      text-align: center;
+      border: 1px solid #333;
+      border-radius: 4px;
+    }
+    .form {
+      padding: 8px;
+      width: 400px;
+      border: 1px solid #333;
+      border-radius: 4px;
+    }
+    .select {
+      margin-top: 16px;
+      width: 100px;
+      height: 50px;
+      line-height: 50px;
+      cursor: pointer;
+      text-align: center;
+    }
+    .red {
+      background-color: red;
+    }
+    .blue {
+      background-color: blue;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <div v-html="msg"></div>
+    <div v-show="flag" class="show">v-show显示了</div>
+    <div v-if="flag" class="if">v-if显示了</div>
+    <div v-else="flag" class="if">v-else显示了</div>
+    <button @click="countDown" class="count">-</button>
+    <button disabled class="count">{{ count }}</button>
+    <button @click="countUp" class="count">+</button>
+    <div class="saler">
+      <h3>add小卖部</h3>
+      <button @click="money(3)">绿茶3元</button>
+      <button @click="money(4)">红茶4元</button>
+      <p>余额还有：{{ balance }}元</p>
+    </div>
+    <img :src="imgUrl">
+    <button @click="index">切换图片</button>
+    <p v-for="(item, index) in fiveTiger" :key="index" class="tiger">{{item}}</p>
+  
+    <div class="form">
+      <p>账号：<input type="text" v-model="username"></p>
+      <p>密码：<input type="password" v-model="password"></p>
+      <button @click="login">登录</button>
+      <button @click="reset">重置</button>
+    </div>
+  
+    <div :class="{ blue: classSelect, red: !classSelect }" @click="classSelect = !classSelect" class="select">点我</div>
+    <div class="red select" :style="{ backgroundColor : 'skyblue' }"></div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        msg: `
+          <a href="#" onclick="window.location.href='https://www.baidu.com'">跳转</a>
+        `,
+        flag: false,
+        count: 0,
+        balance: 50,
+        imgUrl: '../img/1.jpg',
+        imgIndex: 1,
+        fiveTiger: ['关羽', '张飞', '赵云', '马超', '黄忠'],
+        username: '',
+        password: '',
+        classSelect: true,
+      },
+      methods: {
+        countUp() {
+          this.count++
+        },
+        countDown() {
+          this.count--
+        },
+        money(n) {
+          if (this.balance < n) {
+            alert('余额不足')
+            return
+          }
+          this.balance -= n
+        },
+        index() {
+          if (this.imgIndex > 3) {
+            this.imgIndex = 0
+          }
+          this.imgUrl = `../img/${++this.imgIndex}.jpg`
+        },
+        login() {
+          console.log(`账号：${this.username}  密码：${this.password}`)
+        },
+        reset() {
+          this.username = ''
+          this.password = ''
+        }
+      }
+    })
+  </script>
+</body>
+</html>

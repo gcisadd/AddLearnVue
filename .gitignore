@@ -4,3 +4,6 @@ vue.min.js
 VueDevTool.zip
 VueDevTool/nhdogjmejiglipccpnnnanhbledajbpd_7.7.7_chrome.zzzmh.cn.crx
 VueDevTool/安装说明书.txt
+node_modules
+package.json
+package-lock.json
