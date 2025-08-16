@@ -14,8 +14,12 @@ export default {
 }
 </script> -->
 <script setup>
-  import { reactive, ref } from 'vue';
+  import { computed, reactive, ref } from 'vue';
   const msg = ref('Hello World!')
+  const list = ref([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+  const filterList = computed(() => {
+    return list.value.filter(item => item % 2 === 0)
+  })
   const obj1 = reactive({
     name: 'Vue3',
     age: 18
@@ -27,7 +31,8 @@ export default {
   const fun = () => {
     obj1.age ++
     obj2.age ++
-    console.log(msg)
+    // console.log(msg)
+    console.log(filterList.value)
   }
 </script>
 <template>
