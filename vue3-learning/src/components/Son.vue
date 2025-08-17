@@ -1,6 +1,7 @@
 <script setup>
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
   const sonMsg = ref('')
+  const inputRef = ref(null)
   const props = defineProps({
     title: String,
     content: String,
@@ -9,12 +10,19 @@ import { ref } from 'vue'
   const sendMsg = () => {
     emit('change-msg', sonMsg.value)
   }
+  onMounted(() => {
+    inputRef.value.focus()
+  })
+  const str = 'hello world'
+  defineExpose({
+    str,
+  })
 </script>
 <template>
   <div>
     <div>{{ title }}</div>
     <div>{{ content }}</div>
-    <input type="text" v-model="sonMsg" >
+    <input ref="inputRef" type="text" v-model="sonMsg" >
     <button @click="sendMsg">点击改变</button>
   </div>
 </template>

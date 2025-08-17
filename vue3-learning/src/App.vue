@@ -14,7 +14,7 @@ export default {
 }
 </script> -->
 <script setup>
-import { computed, reactive, ref } from 'vue'
+import { computed, onMounted, reactive, ref } from 'vue'
 import Son from './components/Son.vue'
   const msg = ref('Hello World!')
   const list = ref([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
@@ -39,15 +39,25 @@ import Son from './components/Son.vue'
     console.log(e)
     msg.value = e
   }
+  const buttonRef = ref(null)
+  onMounted(() => {
+    console.log(buttonRef.value)
+    console.log(sonRef.value)
+  })
+  const sonRef = ref(null)
+  const showSon = () => {
+    console.log(sonRef.value)
+}
 </script>
 <template>
   <div>
     <div>{{ msg }}</div>
-    <div>{{ obj1}}</div>
+    <div>{{ obj1 }}</div>
     <div>{{ obj2}}</div>
-    <button @click="fun">{{ msg }}</button>
+    <button ref="buttonRef" @click="fun">{{ msg }}</button>
   </div>
-  <Son :title="msg" content="gongchi"  @change-msg="changeMsg"></Son>
+  <button @click="showSon">展示儿子</button>
+  <Son ref="sonRef" :title="msg" content="gongchi"  @change-msg="changeMsg"></Son>
 </template>
 <style>
   button {
