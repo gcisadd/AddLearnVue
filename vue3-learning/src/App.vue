@@ -14,7 +14,8 @@ export default {
 }
 </script> -->
 <script setup>
-  import { computed, reactive, ref } from 'vue';
+import { computed, reactive, ref } from 'vue'
+import Son from './components/Son.vue'
   const msg = ref('Hello World!')
   const list = ref([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
   const filterList = computed(() => {
@@ -34,6 +35,10 @@ export default {
     // console.log(msg)
     console.log(filterList.value)
   }
+  const changeMsg = e => {
+    console.log(e)
+    msg.value = e
+  }
 </script>
 <template>
   <div>
@@ -42,6 +47,7 @@ export default {
     <div>{{ obj2}}</div>
     <button @click="fun">{{ msg }}</button>
   </div>
+  <Son :title="msg" content="gongchi"  @change-msg="changeMsg"></Son>
 </template>
 <style>
   button {
