@@ -1,5 +1,6 @@
 <script setup>
 import { onMounted, ref } from 'vue'
+import GrandSon from './GrandSon.vue'
   const sonMsg = ref('')
   const inputRef = ref(null)
   const props = defineProps({
@@ -25,4 +26,5 @@ import { onMounted, ref } from 'vue'
     <input ref="inputRef" type="text" v-model="sonMsg" >
     <button @click="sendMsg">点击改变</button>
   </div>
+  <GrandSon></GrandSon>
 </template>

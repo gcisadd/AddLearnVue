@@ -14,7 +14,7 @@ export default {
 }
 </script> -->
 <script setup>
-import { computed, onMounted, reactive, ref } from 'vue'
+import { computed, onMounted, provide, reactive, ref } from 'vue'
 import Son from './components/Son.vue'
   const msg = ref('Hello World!')
   const list = ref([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
@@ -47,7 +47,9 @@ import Son from './components/Son.vue'
   const sonRef = ref(null)
   const showSon = () => {
     console.log(sonRef.value)
-}
+  }
+  provide('msg', msg)
+  provide('changeMsg', changeMsg)
 </script>
 <template>
   <div>
